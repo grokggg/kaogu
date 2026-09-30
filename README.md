@@ -38,7 +38,10 @@ chinese-material-culture-agent/
 ├── literature_repository/      # 本地文献索引库（SQLite FTS5）
 ├── docs/
 │   ├── research_methodology.md # 研究方法论（双轨验证法、朝代特征表、避坑清单）
-│   └── extension_architecture.md  # 非侵入式扩展架构设计文档
+│   ├── extension_architecture.md  # 非侵入式扩展架构设计文档
+│   └── reference_images/       # 参考图片（用户提供的对照资料）
+│       ├── 汉武帝巅峰时期长安示意图_参考图.jpg
+│       └── AI生成错误地形图_对照图.png
 ├── main.py                     # 主程序入口（零密钥版本，支持标准/增强双模式）
 └── requirements.txt            # Python依赖
 ```
