@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1100" width="1400" height="1100">
+<defs>
+  <style>
+    text { font-family: "Noto Sans CJK SC", "WenQuanYi Micro Hei", "Microsoft YaHei", sans-serif; }
+    .title { font-size: 24px; font-weight: 700; fill: #3a2510; }
+    .subtitle { font-size: 12px; fill: #6b5030; }
+    .label { font-size: 11px; font-weight: 600; fill: #2a1a08; }
+    .label-large { font-size: 14px; font-weight: 700; fill: #1a0a00; }
+    .water-label { font-size: 10px; fill: #1a4466; font-weight: 600; }
+    .notbuilt-label { font-size: 12px; font-weight: 800; fill: #cc2200; }
+    .notbuilt-sub { font-size: 9px; fill: #8b2200; font-weight: 600; }
+    .gate-label { font-size: 9px; fill: #3a2510; font-weight: 600; }
+  </style>
+  <!-- 透视阴影 -->
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+    <feOffset dx="2" dy="4" result="offsetblur"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <linearGradient id="wallGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#c9a86c"/>
+    <stop offset="100%" stop-color="#a8884c"/>
+  </linearGradient>
+  <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#5a5a5a"/>
+    <stop offset="100%" stop-color="#3a3a3a"/>
+  </linearGradient>
+  <linearGradient id="platformGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#d4b88a"/>
+    <stop offset="100%" stop-color="#b8956a"/>
+  </linearGradient>
+</defs>
+
+<!-- 背景：天空+远景 -->
+<rect x="0" y="0" width="1400" height="1100" fill="#e8e0d0"/>
+<!-- 天空渐变 -->
+<rect x="0" y="0" width="1400" height="300" fill="#d8dce8" opacity="0.6"/>
+<!-- 渭河（远景） -->
+<path d="M 0,280 Q 200,260 400,270 Q 600,280 800,260 Q 1000,240 1200,250 Q 1350,258 1400,250 L 1400,310 Q 1200,300 1000,290 Q 700,280 500,290 Q 300,300 100,310 Q 50,315 0,315 Z" fill="#8ab0c8" opacity="0.7"/>
+<text x="1200" y="275" class="water-label" font-size="13">渭 河</text>
+
+<!-- 关中平原地面 -->
+<path d="M 0,300 L 1400,270 L 1400,1100 L 0,1100 Z" fill="#d8ccaa"/>
+<!-- 地面纹理 -->
+<g opacity="0.2">
+  <path d="M 100,400 Q 300,380 500,390 Q 700,400 900,380" stroke="#a89878" fill="none" stroke-width="1"/>
+  <path d="M 200,500 Q 400,480 600,490 Q 800,500 1000,480" stroke="#a89878" fill="none" stroke-width="1"/>
+  <path d="M 150,600 Q 350,580 550,590 Q 750,600 950,580" stroke="#a89878" fill="none" stroke-width="1"/>
+  <path d="M 100,700 Q 300,680 500,690 Q 700,700 900,680" stroke="#a89878" fill="none" stroke-width="1"/>
+  <path d="M 200,800 Q 400,780 600,790 Q 800,800 1000,780" stroke="#a89878" fill="none" stroke-width="1"/>
+  <path d="M 150,900 Q 350,880 550,890 Q 750,900 950,880" stroke="#a89878" fill="none" stroke-width="1"/>
+</g>
+
+<!-- ============================================ -->
+<!-- 等轴测立体绘制                              -->
+<!-- 视角：从东南方向鸟瞰，北在上方向              -->
+<!-- 坐标系统：原点在西南角                        -->
+<!-- ============================================ -->
+
+<!-- 泬水（城西） -->
+<path d="M 180,350 Q 160,450 150,550 Q 140,700 160,850 Q 180,950 200,1000 L 250,990 Q 220,900 210,780 Q 200,650 220,520 Q 235,420 250,360 Z" fill="#8ab0c8" opacity="0.6"/>
+<text x="155" y="700" class="water-label" transform="rotate(-85,155,700)">泬水（潏水）</text>
+
+<!-- 城壕（护城河）-->
+<g fill="#7a9aaa" opacity="0.5">
+  <!-- 北城壕 -->
+  <path d="M 260,400 L 940,320 L 960,340 L 280,420 Z"/>
+  <!-- 东城壕 -->
+  <path d="M 940,320 L 1000,820 L 980,840 L 920,340 Z"/>
+  <!-- 南城壕 -->
+  <path d="M 280,840 L 980,840 L 1000,860 L 300,860 Z"/>
+  <!-- 西城壕 -->
+  <path d="M 260,400 L 280,840 L 260,860 L 240,420 Z"/>
+</g>
+
+<!-- ============================================ -->
+<!-- 城墙（立体夯土）                             -->
+<!-- 原高12米，基宽16米，顶宽6米，梯形断面         -->
+<!-- ============================================ -->
+<g filter="url(#shadow)">
+<!-- 北墙（顶面+南侧面+东端面） -->
+<polygon points="260,400 940,320 950,335 270,415" fill="#d4b88a"/>
+<polygon points="270,415 950,335 960,400 280,480" fill="#b8956a"/>
+<polygon points="940,320 950,335 960,400 950,385" fill="#a8885c"/>
+
+<!-- 东墙（顶面+西侧面） -->
+<polygon points="940,320 1000,820 980,835 920,335" fill="#d4b88a"/>
+<polygon points="920,335 980,835 950,850 890,350" fill="#a8885c"/>
+
+<!-- 南墙（顶面+北侧面+西端面） -->
+<polygon points="280,840 1000,840 980,855 260,855" fill="#c9a86c"/>
+<polygon points="260,855 980,855 980,890 260,890" fill="#a8885c"/>
+<polygon points="280,840 260,855 260,890 280,875" fill="#9a7a4e"/>
+
+<!-- 西墙（顶面+东侧面） -->
+<polygon points="260,400 280,840 260,855 240,415" fill="#c9a86c"/>
+<polygon points="240,415 260,855 240,870 220,430" fill="#a8885c"/>
+</g>
+
+<!-- 城墙女墙（雉堞）示意 -->
+<g fill="#b8956a" opacity="0.6">
+  <!-- 北墙雉堞 -->
+  <rect x="280" y="395" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="320" y="390" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="360" y="385" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="400" y="380" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="440" y="375" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="480" y="370" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="520" y="365" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="560" y="360" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="600" y="355" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="640" y="350" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="680" y="345" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="720" y="340" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="760" y="335" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="800" y="330" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="840" y="325" width="8" height="12" transform="skewY(-6)"/>
+  <rect x="880" y="320" width="8" height="12" transform="skewY(-6)"/>
+</g>
+
+<!-- ============================================ -->
+<!-- 城门（12座，土木结构门楼）                    -->
+<!-- ============================================ -->
+<g filter="url(#shadow)">
+<!-- 北墙三门 -->
+<!-- 横门 -->
+<polygon points="370,385 400,382 405,400 375,403" fill="#5c3d1e"/>
+<polygon points="370,385 375,403 375,430 370,412" fill="#4a2f16"/>
+<polygon points="400,382 405,400 405,427 400,409" fill="#3a2510"/>
+<polygon points="365,380 405,375 410,385 370,390" fill="#6b4a2a"/>
+<text x="370" y="370" class="gate-label">横门</text>
+<text x="355" y="460" class="gate-label" fill="#c00000" font-weight="700">张骞出使出城</text>
+
+<!-- 厨城门 -->
+<polygon points="560,362 590,359 595,377 565,380" fill="#5c3d1e"/>
+<polygon points="560,362 565,380 565,407 560,389" fill="#4a2f16"/>
+<polygon points="590,359 595,377 595,404 590,386" fill="#3a2510"/>
+<polygon points="555,357 595,352 600,362 560,367" fill="#6b4a2a"/>
+<text x="565" y="348" class="gate-label">厨城门</text>
+
+<!-- 洛城门 -->
+<polygon points="750,342 780,338 785,356 755,360" fill="#5c3d1e"/>
+<polygon points="750,342 755,360 755,387 750,369" fill="#4a2f16"/>
+<polygon points="780,338 785,356 785,383 780,365" fill="#3a2510"/>
+<polygon points="745,337 785,332 790,342 750,347" fill="#6b4a2a"/>
+<text x="750" y="328" class="gate-label">洛城门</text>
+
+<!-- 东墙三门 -->
+<!-- 宣平门 -->
+<polygon points="925,480 940,478 955,495 940,497" fill="#5c3d1e"/>
+<polygon points="940,478 955,495 955,522 940,505" fill="#3a2510"/>
+<polygon points="925,480 940,497 940,524 925,507" fill="#4a2f16"/>
+<polygon points="920,475 955,470 960,485 925,490" fill="#6b4a2a"/>
+<text x="965" y="495" class="gate-label">宣平门</text>
+
+<!-- 清明门 -->
+<polygon points="925,620 940,618 955,635 940,637" fill="#5c3d1e"/>
+<polygon points="940,618 955,635 955,662 940,645" fill="#3a2510"/>
+<polygon points="925,620 940,637 940,664 925,647" fill="#4a2f16"/>
+<polygon points="920,615 955,610 960,625 925,620" fill="#6b4a2a"/>
+<text x="965" y="635" class="gate-label">清明门</text>
+
+<!-- 霸城门 -->
+<polygon points="925,760 940,758 955,775 940,777" fill="#5c3d1e"/>
+<polygon points="940,758 955,775 955,802 940,785" fill="#3a2510"/>
+<polygon points="925,760 940,777 940,804 925,787" fill="#4a2f16"/>
+<polygon points="920,755 955,750 960,765 925,760" fill="#6b4a2a"/>
+<text x="965" y="775" class="gate-label">霸城门</text>
+
+<!-- 南墙三门 -->
+<!-- 覆盎门 -->
+<polygon points="760,848 790,848 795,865 765,865" fill="#5c3d1e"/>
+<polygon points="760,848 765,865 765,885 760,868" fill="#4a2f16"/>
+<polygon points="790,848 795,865 795,885 790,868" fill="#3a2510"/>
+<polygon points="755,843 795,843 800,853 760,853" fill="#6b4a2a"/>
+<text x="755" y="905" class="gate-label">覆盎门</text>
+
+<!-- 安门 -->
+<polygon points="550,850 580,850 585,867 555,867" fill="#8b0000"/>
+<polygon points="550,850 555,867 555,887 550,870" fill="#6b0000"/>
+<polygon points="580,850 585,867 585,887 580,870" fill="#5a0000"/>
+<polygon points="545,845 585,845 590,855 550,855" fill="#a02020"/>
+<text x="540" y="910" class="gate-label" fill="#8b0000" font-weight="800">安门（中轴线）</text>
+
+<!-- 西安门 -->
+<polygon points="340,842 370,845 375,862 345,859" fill="#5c3d1e"/>
+<polygon points="340,842 345,859 345,879 340,862" fill="#4a2f16"/>
+<polygon points="370,845 375,862 375,882 370,865" fill="#3a2510"/>
+<polygon points="335,837 375,840 380,850 340,847" fill="#6b4a2a"/>
+<text x="310" y="895" class="gate-label">西安门</text>
+
+<!-- 西墙三门 -->
+<!-- 章城门 -->
+<polygon points="268,460 275,458 288,475 281,477" fill="#5c3d1e"/>
+<polygon points="275,458 288,475 278,490 265,473" fill="#3a2510"/>
+<polygon points="268,460 281,477 271,492 258,475" fill="#4a2f16"/>
+<polygon points="265,455 288,452 293,465 270,468" fill="#6b4a2a"/>
+<text x="200" y="455" class="gate-label">章城门</text>
+
+<!-- 直城门 -->
+<polygon points="268,600 275,598 288,615 281,617" fill="#5c3d1e"/>
+<polygon points="275,598 288,615 278,630 265,613" fill="#3a2510"/>
+<polygon points="268,600 281,617 271,632 258,615" fill="#4a2f16"/>
+<polygon points="265,595 288,592 293,605 270,608" fill="#6b4a2a"/>
+<text x="200" y="610" class="gate-label">直城门</text>
+
+<!-- 雍门 -->
+<polygon points="268,750 275,748 288,765 281,767" fill="#5c3d1e"/>
+<polygon points="275,748 288,765 278,780 265,763" fill="#3a2510"/>
+<polygon points="268,750 281,767 271,782 258,765" fill="#4a2f16"/>
+<polygon points="265,745 288,742 293,755 270,758" fill="#6b4a2a"/>
+<text x="210" y="760" class="gate-label">雍门</text>
+</g>
+
+<!-- ============================================ -->
+<!-- 城内地面                                    -->
+<!-- ============================================ -->
+<polygon points="280,420 930,345 970,830 280,855" fill="#e0d4b0" opacity="0.5"/>
+
+<!-- 主干道 -->
+<g stroke="#c9a96e" stroke-width="8" opacity="0.6" fill="none" stroke-linecap="round">
+  <line x1="565" y1="400" x2="570" y2="850"/>
+  <line x1="385" y1="415" x2="390" y2="840"/>
+  <line x1="290" y1="610" x2="930" y2="540"/>
+  <line x1="290" y1="750" x2="920" y2="680"/>
+  <line x1="290" y1="470" x2="940" y2="400"/>
+</g>
+
+<!-- ============================================ -->
+<!-- 武库（两宫之间）                             -->
+<!-- ============================================ -->
+<g filter="url(#shadow)">
+<polygon points="460,530 510,525 515,640 465,645" fill="#b85050" opacity="0.7"/>
+<polygon points="460,530 465,645 455,655 450,540" fill="#8a3030" opacity="0.8"/>
+<polygon points="510,525 515,640 505,650 500,535" fill="#6a2020" opacity="0.8"/>
+<polygon points="455,525 515,518 520,530 460,537" fill="#c86060" opacity="0.8"/>
+<!-- 武库屋顶（多个库房，硬山/悬山顶） -->
+<g fill="#5a5a5a">
+  <polygon points="462,535 485,532 485,560 462,563" fill="#4a4a4a"/>
+  <polygon points="487,532 510,529 510,557 487,560" fill="#5a5a5a"/>
+  <polygon points="462,570 485,567 485,595 462,598" fill="#4a4a4a"/>
+  <polygon points="487,567 510,564 510,592 487,595" fill="#5a5a5a"/>
+  <polygon points="462,605 485,602 485,630 462,633" fill="#4a4a4a"/>
+  <polygon points="487,602 510,599 510,627 487,630" fill="#5a5a5a"/>
+</g>
+<text x="450" y="590" class="label" fill="#fff" font-size="13" font-weight="800">武 库</text>
+</g>
+
+<!-- ============================================ -->
+<!-- 北宫（已建成，后妃退处）                      -->
+<!-- ============================================ -->
+<g filter="url(#shadow)">
+<!-- 宫墙 -->
+<polygon points="390,460 500,448 510,585 400,597" fill="#c8b880" opacity="0.5" stroke="#7a6c2e" stroke-width="2"/>
+<polygon points="390,460 400,597 390,607 380,470" fill="#a89860" opacity="0.6" stroke="#7a6c2e" stroke-width="1"/>
+<polygon points="500,448 510,585 500,595 490,458" fill="#988850" opacity="0.6" stroke="#7a6c2e" stroke-width="1"/>
+<polygon points="385,453 505,440 515,452 395,465" fill="#d8c890" opacity="0.7" stroke="#7a6c2e" stroke-width="1"/>
+<!-- 主体建筑 -->
+<polygon points="420,490 470,485 475,540 425,545" fill="#d4b88a"/>
+<polygon points="420,490 425,545 418,555 413,500" fill="#b8956a"/>
+<polygon points="470,485 475,540 468,550 463,495" fill="#a8885c"/>
+<!-- 庑殿顶 -->
+<polygon points="415,483 475,477 490,492 430,498" fill="#5a5a5a"/>
+<polygon points="415,483 430,498 423,490" fill="#4a4a4a"/>
+<polygon points="475,477 490,492 483,484" fill="#6a6a6a"/>
+<text x="415" y="520" class="label-large" fill="#3a2510">北 宫</text>
+<text x="410" y="570" class="label" fill="#5c4d1e" font-size="9">（后妃退处之所）</text>
+</g>
+
+<!-- ============================================ -->
+<!-- 未央宫（西南，大朝正宫）                      -->
+<!-- 利用龙首原三级台基，前殿最高                  -->
+<!-- ============================================ -->
+<g filter="url(#shadow)">
+<!-- 宫墙 -->
+<polygon points="290,530 480,510 495,780 305,800" fill="#c9a86c" opacity="0.35" stroke="#7a5c2e" stroke-width="2"/>
+<polygon points="290,530 305,800 290,810 275,540" fill="#a8884c" opacity="0.4" stroke="#7a5c2e" stroke-width="1"/>
+<polygon points="480,510 495,780 480,790 465,520" fill="#987840" opacity="0.4" stroke="#7a5c2e" stroke-width="1"/>
+<polygon points="280,520 490,498 500,513 290,535" fill="#d9b87c" opacity="0.5" stroke="#7a5c2e" stroke-width="1"/>
+
+<!-- 沧池（未央宫西南） -->
+<ellipse cx="320" cy="750" rx="35" ry="25" fill="#7a9aaa" opacity="0.7"/>
+<text x="320" y="755" class="water-label">沧池</text>
+
+<!-- 龙首原台基（三级，由南向北升高） -->
+<!-- 第一级台基（南部） -->
+<polygon points="330,580 430,570 438,630 338,640" fill="#d4b88a" stroke="#b8956a" stroke-width="1"/>
+<polygon points="330,580 338,640 330,650 322,590" fill="#b8956a"/>
+<polygon points="430,570 438,630 430,640 422,580" fill="#a8885c"/>
+<polygon points="322,573 438,562 445,575 330,586" fill="#e0c89a"/>
+
+<!-- 第二级台基（中部） -->
+<polygon points="340,620 420,612 426,670 346,678" fill="#c9a86c" stroke="#a8884c" stroke-width="1"/>
+<polygon points="340,620 346,678 338,688 332,630" fill="#a8884c"/>
+<polygon points="420,612 426,670 418,678 412,620" fill="#987840"/>
+<polygon points="332,613 428,604 434,617 338,626" fill="#d9b87c"/>
+
+<!-- 第三级台基（北部最高，主体前殿） -->
+<polygon points="345,660 415,653 420,720 350,727" fill="#b8956a" stroke="#987840" stroke-width="1.5"/>
+<polygon points="345,660 350,727 340,737 335,670" fill="#987840"/>
+<polygon points="415,653 420,720 410,730 405,663" fill="#886838"/>
+<polygon points="335,652 422,644 428,657 341,665" fill="#c9a86c"/>
+
+<!-- 前殿主体建筑（大朝正殿，庑殿顶最高等级） -->
+<polygon points="350,635 410,629 418,660 358,666" fill="#d4b88a"/>
+<polygon points="350,635 358,666 348,676 340,645" fill="#b8956a"/>
+<polygon points="410,629 418,660 408,670 400,639" fill="#a8885c"/>
+<!-- 庑殿顶（重檐示意） -->
+<polygon points="343,625 417,618 435,638 361,645" fill="#4a4a4a"/>
+<polygon points="343,625 361,645 353,637" fill="#3a3a3a"/>
+<polygon points="417,618 435,638 427,630" fill="#5a5a5a"/>
+<!-- 屋脊 -->
+<line x1="389" y1="622" x2="389" y2="640" stroke="#2a2a2a" stroke-width="2"/>
+<text x="355" y="695" class="label-large" fill="#fff" font-size="13">前殿</text>
+<text x="345" y="710" class="label" fill="#fff" font-size="9">（龙首原台基·高15米）</text>
+
+<!-- 石渠阁、天禄阁（高台建筑，藏书处） -->
+<polygon points="300,570 325,567 328,610 303,613" fill="#d4b88a"/>
+<polygon points="325,567 328,610 320,617 317,574" fill="#a8885c"/>
+<polygon points="298,563 330,560 333,570 301,573" fill="#e0c89a"/>
+<polygon points="300,560 328,557 333,568 305,571" fill="#5a5a5a"/>
+<text x="295" y="595" class="label" font-size="9">石渠阁</text>
+
+<polygon points="300,520 325,517 328,555 303,558" fill="#d4b88a"/>
+<polygon points="325,517 328,555 320,562 317,524" fill="#a8885c"/>
+<polygon points="298,513 330,510 333,520 301,523" fill="#e0c89a"/>
+<polygon points="300,510 328,507 333,518 305,521" fill="#5a5a5a"/>
+<text x="295" y="542" class="label" font-size="9">天禄阁</text>
+
+<!-- 椒房殿（皇后殿） -->
+<polygon points="430,600 470,596 473,635 433,639" fill="#d4b88a"/>
+<polygon points="470,596 473,635 465,642 462,603" fill="#a8885c"/>
+<polygon points="428,593 475,588 478,599 431,604" fill="#e0c89a"/>
+<polygon points="430,590 473,586 478,596 435,600" fill="#5a5a5a"/>
+<text x="432" y="622" class="label" font-size="9">椒房殿</text>
+
+<!-- 少府 -->
+<polygon points="430,650 470,646 473,680 433,684" fill="#d4b88a"/>
+<polygon points="470,646 473,680 465,687 462,653" fill="#a8885c"/>
+<polygon points="428,643 475,638 478,649 431,654" fill="#e0c89a"/>
+<polygon points="430,640 473,636 478,646 435,650" fill="#5a5a5a"/>
+<text x="437" y="670" class="label" font-size="9">少府</text>
+
+<text x="350" y="555" class="label-large" font-size="16" fill="#5c3d1e">未 央 宫</text>
+<text x="335" y="572" class="label" font-size="10" fill="#6b5030">西宫 · 大朝正宫 · 5平方公里</text>
+</g>
+
+<!-- ============================================ -->
+<!-- 长乐宫（东南，太后居所，最大宫城）            -->
+<!-- ============================================ -->
+<g filter="url(#shadow)">
+<!-- 宫墙 -->
+<polygon points="510,490 900,450 920,780 530,820" fill="#d8b878" opacity="0.3" stroke="#7a5c2e" stroke-width="2"/>
+<polygon points="510,490 530,820 515,830 495,500" fill="#b89858" opacity="0.35" stroke="#7a5c2e" stroke-width="1"/>
+<polygon points="900,450 920,780 905,790 885,460" fill="#a88848" opacity="0.35" stroke="#7a5c2e" stroke-width="1"/>
+<polygon points="495,480 910,438 925,452 510,494" fill="#e8c888" opacity="0.4" stroke="#7a5c2e" stroke-width="1"/>
+
+<!-- 前殿区域 -->
+<polygon points="550,560 660,548 668,620 558,632" fill="#d4b88a"/>
+<polygon points="550,560 558,632 548,642 540,570" fill="#b8956a"/>
+<polygon points="660,548 668,620 658,630 650,558" fill="#a8885c"/>
+<polygon points="540,550 668,538 678,553 550,565" fill="#e0c89a"/>
+<!-- 庑殿顶 -->
+<polygon points="545,545 673,532 688,550 560,563" fill="#4a4a4a"/>
+<polygon points="545,545 560,563 552,555" fill="#3a3a3a"/>
+<polygon points="673,532 688,550 680,542" fill="#5a5a5a"/>
+<text x="570" y="600" class="label-large" fill="#3a2510" font-size="12">前殿</text>
+
+<!-- 长信殿（太后殿） -->
+<polygon points="690,555 750,549 755,595 695,601" fill="#d4b88a"/>
+<polygon points="750,549 755,595 747,602 742,556" fill="#a8885c"/>
+<polygon points="688,548 757,542 762,553 693,559" fill="#e0c89a"/>
+<polygon points="690,545 755,539 760,550 695,556" fill="#5a5a5a"/>
+<text x="695" y="582" class="label" font-size="9">长信殿（太后）</text>
+
+<!-- 池苑 -->
+<ellipse cx="820" cy="680" rx="40" ry="28" fill="#7a9aaa" opacity="0.6"/>
+<text x="820" y="685" class="water-label">池苑</text>
+
+<!-- 钟室 -->
+<polygon points="530,730 560,727 563,760 533,763" fill="#d4b88a"/>
+<polygon points="560,727 563,760 556,766 553,733" fill="#a8885c"/>
+<polygon points="528,724 565,720 568,730 531,734" fill="#e0c89a"/>
+<polygon points="530,720 563,717 568,727 535,730" fill="#5a5a5a"/>
+<text x="525" y="750" class="label" font-size="8">钟室</text>
+
+<text x="650" y="520" class="label-large" font-size="16" fill="#5c3d1e">长 乐 宫</text>
+<text x="630" y="537" class="label" font-size="10" fill="#6b5030">东宫 · 太后居所 · 7.24平方公里</text>
+</g>
+
+<!-- ============================================ -->
+<!-- 东西市                                       -->
+<!-- ============================================ -->
+<g filter="url(#shadow)">
+<!-- 西市（手工业） -->
+<polygon points="300,440 370,432 375,480 305,488" fill="#a8c090" opacity="0.5" stroke="#4a6b2e" stroke-width="1.5"/>
+<polygon points="300,440 305,488 295,496 290,448" fill="#88a070" opacity="0.6"/>
+<polygon points="370,432 375,480 365,488 360,440" fill="#789060" opacity="0.6"/>
+<polygon points="290,432 380,423 385,435 295,444" fill="#b8d0a0" opacity="0.6"/>
+<!-- 市楼 -->
+<polygon points="325,448 350,445 353,468 328,471" fill="#d4b88a"/>
+<polygon points="323,443 353,440 356,448 326,451" fill="#5a5a5a"/>
+<text x="310" y="468" class="label" fill="#2a4210" font-weight="700">西 市</text>
+<text x="300" y="482" class="label" fill="#3a521e" font-size="8">手工业作坊</text>
+
+<!-- 东市（商业） -->
+<polygon points="390,435 460,427 465,475 395,483" fill="#a8c090" opacity="0.5" stroke="#4a6b2e" stroke-width="1.5"/>
+<polygon points="390,435 395,483 385,491 380,443" fill="#88a070" opacity="0.6"/>
+<polygon points="460,427 465,475 455,483 450,435" fill="#789060" opacity="0.6"/>
+<polygon points="380,427 470,418 475,430 385,439" fill="#b8d0a0" opacity="0.6"/>
+<!-- 市楼 -->
+<polygon points="415,443 440,440 443,463 418,466" fill="#d4b88a"/>
+<polygon points="413,438 443,435 446,443 416,446" fill="#5a5a5a"/>
+<text x="400" y="463" class="label" fill="#2a4210" font-weight="700">东 市</text>
+<text x="390" y="477" class="label" fill="#3a521e" font-size="8">商业中心</text>
+</g>
+
+<!-- 东第贵族宅邸区 -->
+<polygon points="295,495 440,480 445,520 300,535" fill="#c8b890" opacity="0.25" stroke="#8b7a47" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="330" y="515" class="label" fill="#5c4d2e" font-size="9">东 第（贵族宅邸区）</text>
+
+<!-- 闾里（居民区，简化示意） -->
+<g fill="#e0d4b8" stroke="#b8a880" stroke-width="0.5" opacity="0.5">
+  <rect x="540" y="440" width="25" height="20"/>
+  <rect x="570" y="437" width="25" height="20"/>
+  <rect x="600" y="434" width="25" height="20"/>
+  <rect x="630" y="431" width="25" height="20"/>
+  <rect x="660" y="428" width="25" height="20"/>
+  <rect x="690" y="425" width="25" height="20"/>
+  <rect x="720" y="422" width="25" height="20"/>
+  <rect x="750" y="419" width="25" height="20"/>
+  <rect x="780" y="416" width="25" height="20"/>
+  <rect x="810" y="413" width="25" height="20"/>
+  <rect x="840" y="410" width="25" height="20"/>
+  <rect x="540" y="465" width="25" height="20"/>
+  <rect x="570" y="462" width="25" height="20"/>
+  <rect x="600" y="459" width="25" height="20"/>
+  <rect x="630" y="456" width="25" height="20"/>
+  <rect x="660" y="453" width="25" height="20"/>
+  <rect x="690" y="450" width="25" height="20"/>
+  <rect x="720" y="447" width="25" height="20"/>
+  <rect x="750" y="444" width="25" height="20"/>
+  <rect x="780" y="441" width="25" height="20"/>
+  <rect x="810" y="438" width="25" height="20"/>
+  <rect x="840" y="435" width="25" height="20"/>
+  <rect x="540" y="490" width="25" height="20"/>
+  <rect x="570" y="487" width="25" height="20"/>
+  <rect x="600" y="484" width="25" height="20"/>
+  <rect x="630" y="481" width="25" height="20"/>
+  <rect x="660" y="478" width="25" height="20"/>
+  <rect x="690" y="475" width="25" height="20"/>
+  <rect x="720" y="472" width="25" height="20"/>
+  <rect x="750" y="469" width="25" height="20"/>
+  <rect x="780" y="466" width="25" height="20"/>
+  <rect x="810" y="463" width="25" height="20"/>
+  <rect x="840" y="460" width="25" height="20"/>
+</g>
+<text x="700" y="405" class="label" fill="#6b5d30" font-size="10">闾里（居民区·160里）</text>
+
+<!-- ============================================ -->
+<!-- 未建建筑：桂宫、明光宫（半透明醒目标注）       -->
+<!-- ============================================ -->
+<!-- 桂宫 -->
+<g opacity="0.6">
+<polygon points="300,380 440,365 450,510 310,525" fill="#ffddbb" fill-opacity="0.3" stroke="#cc4400" stroke-width="3" stroke-dasharray="10,5"/>
+<polygon points="300,380 310,525 298,533 288,388" fill="#ffccaa" fill-opacity="0.2" stroke="#cc4400" stroke-width="1" stroke-dasharray="5,3"/>
+<polygon points="440,365 450,510 438,518 428,373" fill="#ffbb99" fill-opacity="0.2" stroke="#cc4400" stroke-width="1" stroke-dasharray="5,3"/>
+<polygon points="288,372 452,355 462,368 298,385" fill="#ffeecc" fill-opacity="0.4" stroke="#cc4400" stroke-width="1.5" stroke-dasharray="5,3"/>
+<!-- 标注框 -->
+<rect x="320" y="425" width="110" height="45" fill="#fff3e0" stroke="#cc4400" stroke-width="2"/>
+<text x="375" y="448" text-anchor="middle" class="notbuilt-label" font-size="15">桂 宫</text>
+<text x="375" y="465" text-anchor="middle" class="notbuilt-sub">⚠ 张骞出使时未建造</text>
+</g>
+
+<!-- 明光宫 -->
+<g opacity="0.6">
+<polygon points="540,370 740,348 755,490 555,512" fill="#ffddbb" fill-opacity="0.3" stroke="#cc4400" stroke-width="3" stroke-dasharray="10,5"/>
+<polygon points="540,370 555,512 543,520 528,378" fill="#ffccaa" fill-opacity="0.2" stroke="#cc4400" stroke-width="1" stroke-dasharray="5,3"/>
+<polygon points="740,348 755,490 743,498 728,356" fill="#ffbb99" fill-opacity="0.2" stroke="#cc4400" stroke-width="1" stroke-dasharray="5,3"/>
+<polygon points="528,362 752,338 762,352 538,376" fill="#ffeecc" fill-opacity="0.4" stroke="#cc4400" stroke-width="1.5" stroke-dasharray="5,3"/>
+<!-- 标注框 -->
+<rect x="585" y="405" width="120" height="45" fill="#fff3e0" stroke="#cc4400" stroke-width="2"/>
+<text x="645" y="428" text-anchor="middle" class="notbuilt-label" font-size="15">明 光 宫</text>
+<text x="645" y="445" text-anchor="middle" class="notbuilt-sub">⚠ 张骞出使时未建造</text>
+</g>
+
+<!-- ============================================ -->
+<!-- 建章宫（城外西侧，未来位置，醒目标注）        -->
+<!-- ============================================ -->
+<g opacity="0.55">
+<!-- 宫城范围 -->
+<polygon points="40,420 220,400 240,680 60,700" fill="#ffddbb" fill-opacity="0.25" stroke="#cc4400" stroke-width="3" stroke-dasharray="10,5"/>
+<polygon points="40,420 60,700 45,710 25,430" fill="#ffccaa" fill-opacity="0.2" stroke="#cc4400" stroke-width="1" stroke-dasharray="5,3"/>
+<polygon points="220,400 240,680 225,690 205,410" fill="#ffbb99" fill-opacity="0.2" stroke="#cc4400" stroke-width="1" stroke-dasharray="5,3"/>
+<polygon points="25,410 235,387 250,402 40,425" fill="#ffeecc" fill-opacity="0.35" stroke="#cc4400" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+<!-- 标注框 -->
+<rect x="60" y="440" width="130" height="55" fill="#fff3e0" stroke="#cc4400" stroke-width="2.5"/>
+<text x="125" y="465" text-anchor="middle" class="notbuilt-label" font-size="16">建 章 宫</text>
+<text x="125" y="485" text-anchor="middle" class="notbuilt-sub" font-size="10">⚠ 张骞出使时未建造</text>
+<text x="125" y="498" text-anchor="middle" font-size="8" fill="#8b2200">太初元年（前104年）始建</text>
+
+<!-- 前殿（高堡子台基，示意） -->
+<polygon points="80,520 150,512 156,575 86,583" fill="#ffcc99" fill-opacity="0.3" stroke="#aa4400" stroke-width="1.5" stroke-dasharray="4,3"/>
+<polygon points="80,520 86,583 76,590 70,527" fill="#ffbb88" fill-opacity="0.2" stroke="#aa4400" stroke-width="1" stroke-dasharray="3,2"/>
+<polygon points="75,512 158,503 165,515 82,524" fill="#ffe0bb" fill-opacity="0.3" stroke="#aa4400" stroke-width="1" stroke-dasharray="3,2"/>
+<polygon points="78,508 158,500 165,512 85,520" fill="#cc8866" fill-opacity="0.3" stroke="#aa4400" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="95" y="555" class="notbuilt-sub" font-size="10">前殿</text>
+<text x="88" y="568" font-size="7" fill="#8b2200">高堡子台基</text>
+
+<!-- 太液池 -->
+<ellipse cx="90" cy="630" rx="35" ry="25" fill="#8ab0c8" fill-opacity="0.4" stroke="#2a6688" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="90" y="635" text-anchor="middle" class="water-label" font-weight="700">太液池</text>
+<text x="90" y="648" text-anchor="middle" font-size="7" fill="#2a5566">三仙山</text>
+
+<!-- 双凤阙 -->
+<polygon points="205,490 215,489 218,520 208,521" fill="#ffcc99" fill-opacity="0.4" stroke="#aa4400" stroke-width="1" stroke-dasharray="3,2"/>
+<polygon points="203,485 220,483 223,493 206,495" fill="#cc8866" fill-opacity="0.3" stroke="#aa4400" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="185" y="540" font-size="8" fill="#8b2200" font-weight="600" text-anchor="end">双凤阙</text>
+
+<!-- 神明台 -->
+<polygon points="45,600 65,598 68,640 48,642" fill="#ffcc99" fill-opacity="0.3" stroke="#aa4400" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="35" y="625" font-size="8" fill="#8b2200" font-weight="600" text-anchor="end">神明台</text>
+
+<!-- 飞阁辇道（跨城连接未央宫） -->
+<path d="M 220,500 Q 240,505 260,540 L 275,560" fill="none" stroke="#cc4400" stroke-width="2.5" stroke-dasharray="5,4" opacity="0.7"/>
+<text x="230" y="555" font-size="8" fill="#8b2200" font-weight="600" transform="rotate(-60,230,555)">飞阁辇道</text>
+</g>
+
+<!-- ============================================ -->
+<!-- 张骞出使路线箭头                             -->
+<!-- ============================================ -->
+<g>
+<path d="M 380,400 L 380,340 L 340,290" fill="none" stroke="#c00000" stroke-width="4" stroke-linecap="round" opacity="0.8" stroke-dasharray="12,6"/>
+<polygon points="340,290 330,308 350,308" fill="#c00000" opacity="0.8"/>
+<text x="280" y="320" class="route-text" fill="#c00000" font-size="12" font-weight="800">张骞出使路线 →</text>
+<text x="280" y="305" font-size="10" fill="#c00000">横门→渭桥→西域</text>
+</g>
+
+<!-- ============================================ -->
+<!-- 龙首原标注                                  -->
+<!-- ============================================ -->
+<text x="400" y="510" font-size="10" fill="#8b7355" font-style="italic" opacity="0.7">龙首原高地</text>
+
+<!-- ============================================ -->
+<!-- 指北针                                      -->
+<!-- ============================================ -->
+<g transform="translate(1320,1000)">
+  <circle cx="0" cy="0" r="30" fill="#faf6ea" stroke="#5c3d1e" stroke-width="2"/>
+  <polygon points="0,-24 -8,10 0,4 8,10" fill="#c00000"/>
+  <polygon points="0,24 -8,-10 0,-4 8,-10" fill="#5c3d1e"/>
+  <text x="0" y="-33" text-anchor="middle" font-size="14" fill="#c00000" font-weight="700">N</text>
+</g>
+
+<!-- ============================================ -->
+<!-- 标题与图例                                  -->
+<!-- ============================================ -->
+<text x="700" y="50" text-anchor="middle" class="title">汉长安城立体鸟瞰复原图</text>
+<text x="700" y="72" text-anchor="middle" class="subtitle">张骞出使西域时期（前139-前126年） · 依据考古实测数据绘制 · 东南向鸟瞰</text>
+
+<!-- 图例 -->
+<rect x="50" y="930" width="520" height="150" fill="#faf6ea" stroke="#c4b090" stroke-width="1.5" rx="5"/>
+<text x="70" y="955" font-size="13" font-weight="700" fill="#3a2510">图例与考古依据</text>
+
+<rect x="70" y="965" width="25" height="12" fill="#d4b88a" stroke="#8b6f47"/>
+<text x="105" y="975" class="label" font-size="10">夯土城墙（原高12米，基宽16米，纯黄土无包砖）</text>
+
+<rect x="70" y="985" width="25" height="12" fill="#c9a86c" fill-opacity="0.5" stroke="#7a5c2e"/>
+<text x="105" y="995" class="label" font-size="10">宫城宫墙</text>
+
+<rect x="280" y="965" width="25" height="12" fill="#5a5a5a"/>
+<text x="315" y="975" class="label" font-size="10">庑殿顶（宫殿最高等级，青灰瓦）</text>
+
+<rect x="280" y="985" width="25" height="12" fill="#b85050" fill-opacity="0.7" stroke="#7a2020"/>
+<text x="315" y="995" class="label" font-size="10">武库</text>
+
+<rect x="70" y="1005" width="25" height="12" fill="#a8c090" fill-opacity="0.5" stroke="#4a6b2e"/>
+<text x="105" y="1015" class="label" font-size="10">东市·西市</text>
+
+<rect x="280" y="1005" width="25" height="12" fill="#a8c8d8" fill-opacity="0.6" stroke="#5a8aaa"/>
+<text x="315" y="1015" class="label" font-size="10">河流·沧池·城壕·太液池</text>
+
+<rect x="70" y="1025" width="25" height="12" fill="#ffddbb" fill-opacity="0.4" stroke="#cc4400" stroke-width="2" stroke-dasharray="4,3"/>
+<text x="105" y="1035" class="label" font-size="10" fill="#8b2200" font-weight="700">未建建筑（桂宫/明光宫/建章宫，橙红虚线）</text>
+
+<rect x="280" y="1025" width="25" height="12" fill="#e0d4b8" stroke="#b8a880"/>
+<text x="315" y="1035" class="label" font-size="10">闾里（居民区）</text>
+
+<line x1="70" y1="1055" x2="95" y2="1055" stroke="#c00000" stroke-width="3" stroke-dasharray="6,3"/>
+<polygon points="95,1055 89,1051 89,1059" fill="#c00000"/>
+<text x="105" y="1060" class="label" font-size="10" fill="#c00000" font-weight="700">张骞出使路线</text>
+
+<text x="70" y="1072" font-size="9" fill="#6b5030">考古依据：城墙原高12m（《三辅黄图》载三丈五尺），基宽12-16m；未央宫前殿利用龙首原三级台基，北部台基高10m以上；</text>
+<text x="70" y="1085" font-size="9" fill="#6b5030">宫殿用庑殿顶（汉代最高等级），青灰瓦顶；桂宫/明光宫/建章宫均为武帝中晚期增建，张骞出使时尚未动工。</text>
+
+</svg>

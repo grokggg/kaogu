@@ -1,0 +1,96 @@
+agent:
+  name: "chinese_material_culture_researcher"
+  version: "1.0.0"
+  description: "中国历史物质文明复原研究智能体"
+
+model:
+  provider: "deepseek"
+  model_name: "deepseek-chat"
+  temperature: 0.1
+  max_tokens: 16000
+  api_key_env: "DEEPSEEK_API_KEY"
+
+tools:
+  web_search:
+    enabled: true
+    max_results: 10
+    timeout: 30
+    databases:
+      - name: "知网"
+        url: "cnki.net"
+        priority: 1
+      - name: "万方"
+        url: "wanfangdata.com.cn"
+        priority: 2
+      - name: "中国考古网"
+        url: "kaogu.cn"
+        priority: 3
+      - name: "国家文物局"
+        url: "ncha.gov.cn"
+        priority: 4
+  local_index:
+    enabled: true
+    db_path: "literature_repository/index.db"
+
+search:
+  rounds:
+    - keywords_template: "{dynasty}+{period}+{object}+考古报告"
+      priority: 1
+    - keywords_template: "{dynasty}+{period}+{object}+形制研究"
+      priority: 2
+    - keywords_template: "{object}+断代研究"
+      priority: 3
+    - keywords_template: "{site_name}+发掘简报"
+      priority: 4
+
+source_levels:
+  level_1:
+    name: "考古实物"
+    types: ["墓葬发掘报告", "出土文物报告", "文物图录", "博物馆官方资料"]
+    confidence: "high"
+    required_fields: ["书名", "编著单位", "出版社", "年份", "页码"]
+  level_2:
+    name: "学术研究"
+    types: ["CSSCI期刊", "北大核心期刊", "高水平学术专著"]
+    confidence: "medium-high"
+    required_fields: ["作者", "文章标题", "期刊名", "年份", "卷期", "页码"]
+  level_3:
+    name: "历史文献"
+    types: ["正史", "典章制度文献"]
+    confidence: "medium"
+    required_fields: ["文献名称", "卷", "篇章"]
+  level_4:
+    name: "图像资料"
+    types: ["墓室壁画", "石窟壁画", "陶俑", "传世绘画"]
+    confidence: "medium-low"
+    required_fields: ["名称", "年代", "收藏地", "图像内容描述"]
+
+forbidden_sources:
+  - "百度百科"
+  - "维基百科"
+  - "知乎"
+  - "微信公众号"
+  - "个人博客"
+  - "古装影视剧"
+  - "游戏设定"
+  - "AI生成内容"
+
+quality_control:
+  enforce_source_citation: true
+  require_confidence_rating: true
+  enable_conflict_detection: true
+  minimum_source_level: 3
+
+output:
+  directory: "outputs"
+  formats: ["markdown", "json"]
+  auto_save: true
+
+failure_handling:
+  no_network_results:
+    action: "标注【内部知识】并降低可信度"
+    confidence: "low"
+  insufficient_materials:
+    action: "明确列出已知/未知分界"
+  material_conflicts:
+    action: "列出所有冲突材料，不做调和"
